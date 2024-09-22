@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyparser from 'body-parser'
+import db from './db.js'
 import dontenv from 'dotenv';
 const app = express();
 app.use(bodyparser.json())
