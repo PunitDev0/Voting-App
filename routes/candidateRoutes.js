@@ -75,7 +75,6 @@ router.delete('/:candidateID', jwtAuthMiddleware, async (req, res)=>{
         if (!response) {
             return res.status(404).json({ error: 'Candidate not found' });
         }
-
         console.log('candidate deleted');
         res.status(200).json(response);
     }catch(err){
