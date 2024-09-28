@@ -1,7 +1,5 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt'
-
-
+import mongoose from 'mongoose'
+import bcrypt from 'bcrypt';
 // Define the Person schema
 const userSchema = new mongoose.Schema({
     name: {
@@ -73,7 +71,5 @@ userSchema.methods.comparePassword = async function(candidatePassword){
     }
 }
 
-
-const User = mongoose.model('User',userSchema);
-
+const User = mongoose.model('User', userSchema);
 export default User;
