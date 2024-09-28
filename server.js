@@ -6,6 +6,11 @@ const app = express();
 app.use(bodyparser.json())
 dontenv.config();
 
+
+
+
+import candidateRoute from './routes/candidateRoutes.js'
+app.use('/candidate', candidateRoute)
 import userRoute from './routes/userRoutes.js'
 app.use('/user', userRoute)
 
