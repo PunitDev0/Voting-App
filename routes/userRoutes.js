@@ -1,9 +1,9 @@
 import express from 'express';
 const router = express.Router();
-import User from '../Models/user.js';
-import {jwtAuthMiddleware, generateToken} from '../Jwt.js'
+import User from'./../models/user.js';
+import {jwtAuthMiddleware, generateToken} from './../Jwt.js';
 
-// POST route to add a User
+// POST route to add a person
 router.post('/signup', async (req, res) =>{
     try{
         const data = req.body // Assuming the request body contains the User data
@@ -80,11 +80,10 @@ router.post('/login', async(req, res) => {
 });
 
 // Profile route
-router.get('/profile', jwtAuthMiddleware, async (req, res) => {
+router.get('/profile', async (req, res) => {
     try{
         const userData = req.user;
-        const userId = userData.id;
-        const user = await User.findById(userId);
+        const user = await User.find({});
         res.status(200).json({user});
     }catch(err){
         console.error(err);
@@ -92,7 +91,7 @@ router.get('/profile', jwtAuthMiddleware, async (req, res) => {
     }
 })
 
-router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
+router.put('/profile/password', async (req, res) => {
     try {
         const userId = req.user.id; // Extract the id from the token
         const { currentPassword, newPassword } = req.body; // Extract current and new passwords from request body
@@ -121,7 +120,5 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
-
 
 export default router;
