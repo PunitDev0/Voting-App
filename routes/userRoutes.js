@@ -10,6 +10,7 @@ router.post('/signup', async (req, res) =>{
 
         // Check if there is already an admin user
         const adminUser = await User.findOne({ role: 'admin' });
+
         if (data.role === 'admin' && adminUser) {
             return res.status(400).json({ error: 'Admin user already exists' });
         }
@@ -45,7 +46,6 @@ router.post('/signup', async (req, res) =>{
         res.status(500).json({error: 'Internal Server Error'});
     }
 })
-
 // Login Route
 router.post('/login', async(req, res) => {
     try{
@@ -80,10 +80,14 @@ router.post('/login', async(req, res) => {
 });
 
 // Profile route
-router.get('/profile', async (req, res) => {
+router.get('/profile',jwtAuthMiddleware, async (req, res) => {
     try{
         const userData = req.user;
-        const user = await User.find({});
+        const userid = userData.id
+        console.log(userid);
+        const user = await User.findById(userid);
+        console.log(user);
+        
         res.status(200).json({user});
     }catch(err){
         console.error(err);
