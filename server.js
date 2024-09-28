@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // Sample route
 app.get('/', (req, res) => {
     console.log('Server is running! Request received at /');
-    res.send('Welcome to our Voting App');
+    res.send('Welcome to our Voting App ');
 });
 
 // Uncomment these routes if they exist in your project

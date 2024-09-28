@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-// const bcrypt = require('bcrypt');
+// import bcrypt from 'bcryptjs';  // Change bcrypt import
+
 
 // Define the Person schema
 const candidateSchema = new mongoose.Schema({
